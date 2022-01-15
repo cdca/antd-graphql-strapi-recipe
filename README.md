@@ -1,0 +1,1 @@
+# antd-graphql-strapi-recipe
