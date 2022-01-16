@@ -1,5 +1,5 @@
 # antd-graphql-strapi-recipe
-
+[![Netlify Status](https://api.netlify.com/api/v1/badges/b88fa077-22ba-4571-b5cf-4adcf39e1434/deploy-status)](https://app.netlify.com/sites/antd-graphql-strapi-cdca/deploys)  
 This app is showing some cooking recipes.
 It is made with React (Antd) on the frontend. Graphql is used for querying. Strapi is used for headless CMS as the backend. I had no time for CSS so I used some quick stylings.
 
@@ -38,6 +38,7 @@ And then hit localhost:1337 from frontend.
 
 # Strapi login admin
 
+  
 Link to live version login:
 https://safe-scrubland-46591.herokuapp.com/admin/auth/login
 
@@ -47,7 +48,7 @@ https://safe-scrubland-46591.herokuapp.com/admin/auth/login
 I had no time to connect S3 so images are deleted every time Heroku goes to hibernate. That is why I've put Fa-Icons instead of real images. I've left the image query on the Details page. You can go on the live version with provided login and you can add posts. Please don't delete current ones.
 
 # Deploy
-
+### Backend  
 Backend is deployed on Heroku. For deployment on Heroku I have followed this link:
 
 https://docs.strapi.io/developer-docs/latest/setup-deployment-guides/deployment/hosting-guides/heroku.html. At the time Strapi is on v4, maybe when you are building it you will need to do different things. I've used the Heroku plugin for Postgresql as a database.
@@ -58,3 +59,12 @@ My backend .env file:
 > API_TOKEN_SALT=240427ce6d19e7fce11fa375cf6ef4b4  
 > DATABASE_URL=postgres://ebitxebvixeeqd:dc59b16dedb3a1eef84d4999sb4baf@ec2-50-37-231-192.compute-2.amazonaws.com: 5432/d516fp1u21ph7b  
 > MY_HEROKU_URL=https://safe-scrubland-46591.herokuapp.com/
+### Frontend  
+Frontend is deployed on Netlify. My Netlify settings for deployment:
+
+>Repository : ```github.com/cdca/antd-graphql-strapi-recipe```  
+>Base directory: ```frontend/```  
+> Build command: ```CI=false npm run build```  
+> Publish directory: ```frontend/build```  
+>Deploy log visibility: ```Logs are public```  
+>Builds: ```Active```    
