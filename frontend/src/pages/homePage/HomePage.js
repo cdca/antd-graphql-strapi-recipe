@@ -4,9 +4,10 @@ import { Card, Row, Col } from "antd";
 import { Link } from "react-router-dom";
 import config from "../../util/config";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { faHamburger, faStar } from "@fortawesome/free-solid-svg-icons";
 import { v4 as uuidv4 } from "uuid";
 import "../../App.css";
+import spinner from "../../assets/Infinity-2.9s-200px.svg";
 
 const RECIPES = gql`
   query GetRECIPES {
@@ -50,13 +51,33 @@ const HomePage = () => {
 
   return (
     <div>
-      <h1>Home</h1>
       {loading ? (
-        <h1>Loading</h1>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          <h1 style={{ color: "#a085ca", paddingTop: 60 }}>
+            Waiting for Heroku to wake up...
+          </h1>
+          ;
+          <img src={spinner} style={{ height: 300, width: 300 }} />
+          <h3>
+            {" "}
+            Sadly there are no images in this app, so I've put some Fa-Icons{" "}
+            <FontAwesomeIcon
+              icon={faStar}
+              style={{ color: "#a085ca", fontSize: 24 }}
+            />
+          </h3>
+        </div>
       ) : error ? (
         <h1>{error.message}</h1>
       ) : (
         <div>
+          <h1>Home</h1>
           <div className="card-grid">
             {data.recipes.data.map((item) => (
               <Link key={item.id} className="link" to={`/details/${item.id}`}>
@@ -64,17 +85,10 @@ const HomePage = () => {
                   hoverable={true}
                   style={{ borderRadius: 20 }}
                   cover={
-                    <img
-                      alt="example"
-                      src={
-                        config.BASE_ENDPOINT_URL +
-                        `${item.attributes.image.data[0].attributes.url}`
-                      }
-                      height={240}
-                      style={{
-                        borderTopLeftRadius: 20,
-                        borderTopRightRadius: 20,
-                      }}
+                    <FontAwesomeIcon
+                      icon={faHamburger}
+                      style={{ height: 250 }}
+                      className="cover-icon"
                     />
                   }
                 >

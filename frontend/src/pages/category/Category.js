@@ -2,10 +2,11 @@ import { gql, useQuery } from "@apollo/client";
 import React from "react";
 import { Card, Row, Col } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { faStar, faHamburger } from "@fortawesome/free-solid-svg-icons";
 import { useParams, Link } from "react-router-dom";
 import config from "../../util/config";
 import { v4 as uuidv4 } from "uuid";
+import spinner from "../../assets/Infinity-2.9s-200px.svg";
 
 const CATEGORY = gql`
   query GetCategory($id: ID!) {
@@ -57,7 +58,15 @@ const Category = () => {
   const { Meta } = Card;
 
   return loading ? (
-    <h1>Loading</h1>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+      }}
+    >
+      <img src={spinner} style={{ height: 300, width: 300, paddingTop: 40 }} />
+    </div>
   ) : error ? (
     <h1>{error}</h1>
   ) : (
@@ -71,17 +80,10 @@ const Category = () => {
                 hoverable={true}
                 style={{ borderRadius: 20 }}
                 cover={
-                  <img
-                    alt="example"
-                    src={
-                      config.BASE_ENDPOINT_URL +
-                      `${item.attributes.image.data[0].attributes.url}`
-                    }
-                    height={240}
-                    style={{
-                      borderTopLeftRadius: 20,
-                      borderTopRightRadius: 20,
-                    }}
+                  <FontAwesomeIcon
+                    icon={faHamburger}
+                    style={{ height: 250 }}
+                    className="cover-icon"
                   />
                 }
               >

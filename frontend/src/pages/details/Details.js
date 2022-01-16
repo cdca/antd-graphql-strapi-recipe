@@ -8,6 +8,7 @@ import "../../App.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { v4 as uuidv4 } from "uuid";
+import spinner from "../../assets/Infinity-2.9s-200px.svg";
 
 const RECIPE = gql`
   query GetRecipe($id: ID!) {
@@ -48,12 +49,20 @@ const Details = () => {
     height: "300px",
     lineHeight: "300px",
     textAlign: "center",
-    background: "#364d79",
+    background: "#a085ca",
     width: "400px",
   };
 
   return loading ? (
-    <h1>Loading</h1>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+      }}
+    >
+      <img src={spinner} style={{ height: 300, width: 300, paddingTop: 40 }} />
+    </div>
   ) : error ? (
     <div>
       <h1>{error}</h1>
@@ -115,7 +124,7 @@ const Details = () => {
                 <div key={uuidv4}>
                   <Image
                     src={config.BASE_ENDPOINT_URL + `${c.attributes.url}`}
-                    alt="lol"
+                    alt="No image"
                     height={300}
                     width="100%"
                   />

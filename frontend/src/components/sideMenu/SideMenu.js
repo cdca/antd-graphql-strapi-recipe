@@ -1,7 +1,8 @@
 import { gql, useQuery } from "@apollo/client";
 import React from "react";
 import { Link } from "react-router-dom";
-import "../App.css";
+import spinner from "../../assets/Infinity-2.9s-200px.svg";
+import "../../App.css";
 
 const CATEGORIES = gql`
   query GetCategories {
@@ -20,7 +21,15 @@ const SideMenu = () => {
   const { loading, data, error } = useQuery(CATEGORIES);
 
   return loading ? (
-    <div>Loading</div>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+      }}
+    >
+      <img src={spinner} style={{ height: 150, width: 150, paddingTop: 30 }} />
+    </div>
   ) : error ? (
     <h1>{error}</h1>
   ) : (

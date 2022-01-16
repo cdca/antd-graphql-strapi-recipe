@@ -4,10 +4,11 @@ import { BrowserRouter as Router, Link, Route, Routes } from "react-router-dom";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import HomePage from "./pages/homePage/HomePage";
 import Category from "./pages/category/Category";
-import SideMenu from "./components/SideMenu";
+import SideMenu from "./components/sideMenu/SideMenu";
 import Details from "./pages/details/Details";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHamburger } from "@fortawesome/free-solid-svg-icons";
+import { faHamburger, faLaptopCode } from "@fortawesome/free-solid-svg-icons";
+
 import "./App.css";
 
 function App() {
@@ -46,7 +47,15 @@ function App() {
               </div>
             </Content>
           </Layout>
-          <Footer className="footer">Footer</Footer>
+          <Footer className="footer">
+            <FontAwesomeIcon icon={faLaptopCode} />
+            <Link
+              to="https://github.com/cdca"
+              style={{ fontSize: 14, color: "white", marginLeft: 4 }}
+            >
+              CDCA Git
+            </Link>
+          </Footer>
         </Layout>
       </ApolloProvider>
     </Router>
